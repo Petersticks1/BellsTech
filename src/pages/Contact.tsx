@@ -8,15 +8,53 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      window.location.href = `mailto:bellstechmulticoncept@gmail.com?subject=Enquiry from ${formData.name}&body=${formData.message}%0A%0AFrom: ${formData.email}`;
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 1000);
+    setIsSending(true);
+    setSendResult('idle');
+
+    try {
+      const response = await fetch('/send_mail.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: `Enquiry from ${formData.name}`,
+          message: formData.message,
+        }),
+      });
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        throw new Error("Invalid server response. PHP might not be executing.");
+      }
+
+      if (response.ok && result.status === 'success') {
+        setSendResult('success');
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setSendResult('idle');
+          setFormData({ name: '', email: '', message: '' });
+        }, 3000);
+      } else {
+        setSendResult('error');
+      }
+    } catch (error) {
+
+      console.error('Error:', error);
+      setSendResult('error');
+    } finally {
+      setIsSending(false);
+    }
   };
+
 
   const contactItems = [
     { icon: <FiMapPin size={20} />, title: 'Address', value: 'KOC Plaza, Before City Computer Village, Behind New SLOT, Opp. FASLINK, Okeilewo, Abeokuta' },
@@ -130,14 +168,15 @@ const Contact = () => {
 
               {submitted ? (
                 <div className="bg-white/5 text-white p-10 rounded-xl text-center border border-white/10 flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 bg-[#1D6FEB] text-white rounded-full flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold">Preparing your message…</h4>
-                  <p className="text-[#94A3B8]">Opening your email client.</p>
+                  <h4 className="text-xl font-bold">Message Sent Successfully!</h4>
+                  <p className="text-[#94A3B8]">We will get back to you shortly.</p>
                 </div>
+
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -174,12 +213,14 @@ const Contact = () => {
                   </div>
                   <motion.button
                     type="submit"
+                    disabled={isSending}
                     whileHover={{ scale: 1.02, boxShadow: '0 8px 30px rgba(29,111,235,0.35)' }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-[#1D6FEB] text-white font-bold py-4 rounded-xl shadow-lg transition-shadow text-lg"
+                    className="w-full bg-[#1D6FEB] text-white font-bold py-4 rounded-xl shadow-lg transition-shadow text-lg disabled:opacity-50"
                   >
-                    Send Message
+                    {isSending ? 'Sending...' : sendResult === 'error' ? 'Failed - Try Again' : 'Send Message'}
                   </motion.button>
+
                 </form>
               )}
             </div>

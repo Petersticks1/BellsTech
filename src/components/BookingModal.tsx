@@ -11,6 +11,54 @@ interface BookingModalProps {
 const BookingModal = ({ isOpen, onClose, initialType = 'repair' }: BookingModalProps) => {
   const [bookingType, setBookingType] = useState<'repair' | 'consultation'>(initialType);
   const [bookingData, setBookingData] = useState({ name: '', email: '', fault: '' });
+  const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleEmailBooking = async () => {
+    if (!bookingData.name || !bookingData.fault) {
+      alert("Please fill in your name and description.");
+      return;
+    }
+    
+    setIsSending(true);
+    setSendResult('idle');
+    try {
+      const response = await fetch('/send_mail.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: bookingData.name,
+          email: bookingData.email,
+          subject: `${bookingType === 'repair' ? 'Repair' : 'Consultation'} Booking - ${bookingData.name}`,
+          message: `${bookingType === 'repair' ? 'Fault' : 'Consultation Request'}:\n${bookingData.fault}`
+        }),
+      });
+      
+      let result;
+      try {
+        result = await response.json();
+      } catch (e) {
+        throw new Error("Invalid server response. PHP might not be executing.");
+      }
+
+      if (response.ok && result.status === 'success') {
+        setSendResult('success');
+        setTimeout(() => {
+          onClose();
+          setSendResult('idle');
+          setBookingData({ name: '', email: '', fault: '' });
+        }, 2000);
+      } else {
+        setSendResult('error');
+      }
+    } catch (err) {
+      console.error(err);
+      setSendResult('error');
+    } finally {
+      setIsSending(false);
+    }
+  };
+
 
   useEffect(() => {
     if (isOpen) {
@@ -117,12 +165,14 @@ const BookingModal = ({ isOpen, onClose, initialType = 'repair' }: BookingModalP
                     >
                       WhatsApp
                     </a>
-                    <a
-                      href={`mailto:bellstechmulticoncept@gmail.com?subject=${bookingType === 'repair' ? 'Repair' : 'Consultation'} Booking - ${bookingData.name}&body=Name: ${bookingData.name}%0AEmail: ${bookingData.email || 'Not provided'}%0A${bookingType === 'repair' ? 'Fault' : 'Consultation Request'}: ${bookingData.fault}`}
-                      className="flex items-center justify-center gap-2 bg-[#1D6FEB] text-white py-3 rounded-xl font-bold hover:brightness-110 transition-all"
+                    <button
+                      onClick={handleEmailBooking}
+                      disabled={isSending}
+                      className="flex items-center justify-center gap-2 bg-[#1D6FEB] text-white py-3 rounded-xl font-bold hover:brightness-110 transition-all disabled:opacity-50"
                     >
-                      Email
-                    </a>
+                      {isSending ? 'Sending...' : sendResult === 'success' ? 'Sent!' : sendResult === 'error' ? 'Failed' : 'Email'}
+                    </button>
+
                   </div>
                 </div>
               </div>

@@ -23,7 +23,7 @@ const Particle = ({ style }: { style: React.CSSProperties }) => (
   <div className="absolute rounded-full bg-white/10 animate-pulse" style={style} />
 );
 
-const serviceIcons: Record<string, JSX.Element> = {
+const serviceIcons: Record<string, React.ReactNode> = {
   FiSmartphone: <FiSmartphone size={24} />,
   FiTool: <FiTool size={24} />,
   FiMonitor: <FiMonitor size={24} />,
