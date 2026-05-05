@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiInstagram, FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import { FiInstagram, FiPhone, FiMail, FiMapPin, FiClock, FiHeart } from 'react-icons/fi';
 import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 
-import logo from '../assets/bellstech-frameArtboard-1.png';
+import logo from '../assets/bellstech-logo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-brand-primary text-white pt-16 pb-8">
+    <footer className="bg-[#0A1F44] text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" className="flex items-center mb-4">
-              <img src={logo} alt="Bellstech Logo" className="h-10 w-auto brightness-0 invert" />
-              <span className="ml-2 font-heading font-bold text-xl">Bellstech</span>
+            <Link to="/" className="flex items-center gap-2 mb-6 group">
+              <img src={logo} alt="Bellstech Logo" className="h-12 w-auto drop-shadow-md" />
+              <span className="font-heading font-bold text-2xl tracking-wide">
+                Bells<span className="text-[#38BDF8]">tech</span>
+              </span>
             </Link>
             <p className="text-brand-muted mb-6">
               Enhancing Your Digital Experience with premium gadget sales, expert repairs, and reliable tech solutions.
@@ -72,14 +74,22 @@ const Footer = () => {
                 <FiMail className="mr-3 text-brand-highlight flex-shrink-0" />
                 <span className="text-brand-muted text-sm">bellstechmulticoncept@gmail.com</span>
               </li>
+              <li className="flex items-center">
+                <FiClock className="mr-3 text-brand-highlight flex-shrink-0" />
+                <span className="text-brand-muted text-sm">Monday – Saturday, 9:00am – 6:00pm</span>
+              </li>
             </ul>
+
           </div>
         </div>
 
-        <div className="border-t border-brand-muted/20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-brand-muted">
-          <p>&copy; {new Date().getFullYear()} Bellstech. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Monday – Saturday, 9:00am – 6:00pm</p>
+        <div className="border-t border-brand-muted/20 pt-8 flex flex-col md:flex-row justify-center items-center text-sm text-brand-muted">
+          <p className="flex items-center gap-1.5">
+            <span className="text-[#38BDF8] font-bold">Bellstech</span> &copy; {new Date().getFullYear()} Built With <FiHeart className="text-[#38BDF8] fill-[#38BDF8] animate-pulse" size={14} /> By <Link to="https://altairattic.com" className="text-[#38BDF8] hover:text-white transition-colors font-bold">Altair Attic</Link>
+          </p>
+
         </div>
+
       </div>
     </footer>
   );

@@ -1,86 +1,104 @@
+import iphonesImage from '../assets/Iphones.png';
+import macBooks from '../assets/macbooks.png';
+import samsung from '../assets/samsung.png';
+import starlink from '../assets/starlink.png';
+import airpods from '../assets/Airpod.png';
+import android3 from '../assets/android3.png';
+import ipads from '../assets/ipads.png';
+import consoles from '../assets/console.png';
+import smartWatch from '../assets/smartwatch.png';
+import laptops from '../assets/laptops.png';
+import workstations from '../assets/workstation.png';
+import screens from '../assets/screen.png';
+
+
+
 export const products = [
   {
     id: 'p1',
-    name: 'iPhone 15 Pro Max',
-    category: 'iPhones & iPads',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=iPhone+15+Pro+Max',
+    name: 'Premium iPhone Series',
+    category: 'iPhones',
+    image: iphonesImage,
     price: 'Contact for Price'
   },
   {
     id: 'p2',
-    name: 'MacBook Pro 14" M3',
-    category: 'MacBooks & PCs',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=MacBook+Pro',
+    name: 'High-Performance MacBooks',
+    category: 'Apple MacBooks & Macs',
+    image: macBooks,
     price: 'Contact for Price'
   },
   {
     id: 'p3',
-    name: 'Samsung Galaxy S24 Ultra',
+    name: 'Elite Samsung Series',
     category: 'Samsung',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=Galaxy+S24+Ultra',
+    image: samsung,
     price: 'Contact for Price'
   },
   {
     id: 'p4',
-    name: 'Starlink Standard Kit',
-    category: 'Starlink & Power',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=Starlink+Kit',
+    name: 'Starlink Internet Kits',
+    category: 'Starlink',
+    image: starlink,
     price: 'Contact for Price'
   },
   {
     id: 'p5',
-    name: 'AirPods Pro (2nd Gen)',
-    category: 'Consoles & Accessories',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=AirPods+Pro',
+    name: 'AirPods & Premium Audio',
+    category: 'Airpods',
+    image: airpods,
     price: 'Contact for Price'
   },
   {
     id: 'p6',
-    name: 'HP Spectre x360',
-    category: 'MacBooks & PCs',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=HP+Spectre',
+    name: 'Latest Android Series',
+    category: 'Android phones',
+    image: android3,
     price: 'Contact for Price'
   },
   {
     id: 'p7',
-    name: 'iPad Pro 12.9"',
-    category: 'iPhones & iPads',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=iPad+Pro',
+    name: 'Professional iPad Models',
+    category: 'Ipads',
+    image: ipads,
     price: 'Contact for Price'
   },
   {
     id: 'p8',
-    name: 'PlayStation 5 Console',
-    category: 'Consoles & Accessories',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=PS5+Console',
+    name: 'Gaming Consoles & Gear',
+    category: 'Consoles and Accessories',
+    image: consoles,
     price: 'Contact for Price'
   },
   {
     id: 'p9',
-    name: 'Samsung Galaxy Watch 6',
-    category: 'Samsung',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=Galaxy+Watch+6',
+    name: 'Advanced Smartwatch Series',
+    category: 'Smart watch',
+    image: smartWatch,
     price: 'Contact for Price'
   },
   {
     id: 'p10',
-    name: 'Dell XPS 15',
-    category: 'MacBooks & PCs',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=Dell+XPS+15',
+    name: 'Business & Gaming Laptops',
+    category: 'PC Laptops & Desktops (Windows)',
+    image: laptops,
     price: 'Contact for Price'
   },
-  {
-    id: 'p11',
-    name: 'EcoFlow Powerstation',
-    category: 'Starlink & Power',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=EcoFlow+Powerstation',
-    price: 'Contact for Price'
-  },
+
   {
     id: 'p12',
-    name: 'Anker Power Bank 20000mAh',
-    category: 'Consoles & Accessories',
-    image: 'https://placehold.co/400x300/0A1F44/FFFFFF?text=Anker+Power+Bank',
+    name: 'HD Screens & Monitors',
+    category: 'Screens and Accessories',
+    image: screens,
     price: 'Contact for Price'
-  }
+  },
+
+  {
+    id: 'p14',
+    name: 'Portable PC Workstations',
+    category: 'Workstations',
+    image: workstations,
+    price: 'Contact for Price'
+  },
+
 ];

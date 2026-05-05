@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useBooking } from '../context/BookingContext';
+
 
 import logo from '../assets/bellstech-logo.png';
 
@@ -20,6 +22,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { openBooking } = useBooking();
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 60);
@@ -95,19 +99,18 @@ const Navbar = () => {
             })}
 
             {/* Glowing CTA */}
-            <motion.a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={() => openBooking('repair')}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.55, duration: 0.4 }}
               whileHover={{ scale: 1.05, boxShadow: '0 0 24px rgba(29,111,235,0.55)' }}
               whileTap={{ scale: 0.97 }}
-              className="ml-4 bg-gradient-to-r from-[#1D6FEB] to-[#38BDF8] text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg shadow-[#1D6FEB]/30 transition-shadow"
+              className="ml-4 bg-[#1D6FEB] text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg shadow-[#1D6FEB]/30 transition-shadow"
             >
               Book a Repair
-            </motion.a>
+            </motion.button>
+
           </div>
 
           {/* Mobile Hamburger */}
@@ -178,17 +181,16 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
-              <motion.a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => openBooking('repair')}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
-                className="mt-2 bg-gradient-to-r from-[#1D6FEB] to-[#38BDF8] text-white px-6 py-3.5 rounded-xl font-bold text-center shadow-lg"
+                className="mt-2 bg-[#1D6FEB] text-white px-6 py-3.5 rounded-xl font-bold text-center shadow-lg"
               >
                 Book a Repair
-              </motion.a>
+              </motion.button>
+
             </div>
           </motion.div>
         )}

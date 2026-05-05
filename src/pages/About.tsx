@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
 import pageHero from '../assets/IMG_7998.PNG';
+import storeImage from '../assets/IMG_2128.PNG';
 
 const About = () => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-white">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-[#0A1F44]">
 
       {/* Page Hero */}
       <div className="relative h-72 md:h-96 overflow-hidden">
         <img src={pageHero} alt="About Bellstech" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1F44]/75 via-[#0A1F44]/60 to-white" />
+        <div className="absolute inset-0 bg-[#0A1F44]/75" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pt-16">
           <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
             className="inline-block text-[#38BDF8] font-semibold text-sm tracking-widest uppercase mb-3">
@@ -30,9 +31,9 @@ const About = () => {
         {/* Brand Story */}
         <div className="flex flex-col lg:flex-row gap-16 items-center mb-24">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="lg:w-1/2">
-            <span className="inline-block text-[#1D6FEB] font-semibold text-sm tracking-widest uppercase mb-3">Our Story</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0A1F44] mb-6">Enhancing Your Digital Experience</h2>
-            <div className="space-y-4 text-[#64748B] text-lg leading-relaxed">
+            <span className="inline-block text-[#38BDF8] font-semibold text-sm tracking-widest uppercase mb-3">Our Story</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-6">Enhancing Your Digital Experience</h2>
+            <div className="space-y-4 text-[#94A3B8] text-lg leading-relaxed">
               <p>Bellstech (Bells Technology Multiconcept) is Abeokuta's premier destination for gadget sales, professional repairs, and innovative tech solutions.</p>
               <p>Whether you need the latest smartphone, urgent screen replacement, or Starlink internet setup, our expert team delivers swift, reliable, and premium service.</p>
               <p>With a commitment to quality and customer satisfaction, every device we handle meets the highest performance standards.</p>
@@ -40,8 +41,8 @@ const About = () => {
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="lg:w-1/2">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img src={pageHero} alt="Bellstech Store" className="w-full h-80 object-cover" />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A1F44]/80 to-transparent p-8">
+              <img src={storeImage} alt="Bellstech Store" className="w-full h-80 object-cover" />
+              <div className="absolute bottom-0 left-0 right-0 bg-[#0A1F44]/80 p-8">
                 <p className="text-white font-bold text-xl font-heading">Bellstech, Abeokuta</p>
                 <p className="text-white/70 text-sm">KOC Plaza, Okeilewo</p>
               </div>
@@ -52,8 +53,8 @@ const About = () => {
         {/* Core Values */}
         <div className="mb-24">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0A1F44] mb-4">Our Core Values</h2>
-            <div className="w-20 h-1.5 bg-gradient-to-r from-[#1D6FEB] to-[#38BDF8] mx-auto rounded-full" />
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Our Core Values</h2>
+            <div className="w-20 h-1.5 bg-[#1D6FEB] mx-auto rounded-full" />
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {[
@@ -62,11 +63,11 @@ const About = () => {
               { title: 'Innovation', desc: 'Staying ahead with the latest technology and repair techniques.' },
             ].map((v, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -6 }}
-                className="bg-[#F0F6FF] p-10 rounded-2xl text-center border border-[#1D6FEB]/10 hover:border-[#1D6FEB]/30 transition-all">
-                <FiCheckCircle className="text-[#1D6FEB] w-12 h-12 mx-auto mb-5" />
-                <h3 className="text-2xl font-heading font-bold text-[#0A1F44] mb-3">{v.title}</h3>
-                <p className="text-[#64748B]">{v.desc}</p>
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ y: -6, backgroundColor: 'rgba(255,255,255,0.05)' }}
+                className="bg-white/5 backdrop-blur-sm p-10 rounded-2xl text-center border border-white/10 transition-all">
+                <FiCheckCircle className="text-[#38BDF8] w-12 h-12 mx-auto mb-5" />
+                <h3 className="text-2xl font-heading font-bold text-white mb-3">{v.title}</h3>
+                <p className="text-[#94A3B8]">{v.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -96,7 +97,7 @@ const About = () => {
                 </li>
               </ul>
               <a href="https://maps.app.goo.gl/Ukvtc3HAqxxJA9Lz8" target="_blank" rel="noopener noreferrer"
-                className="inline-block mt-8 bg-gradient-to-r from-[#1D6FEB] to-[#38BDF8] text-white px-8 py-3.5 rounded-full font-bold hover:opacity-90 shadow-lg">
+                className="inline-block mt-8 bg-[#1D6FEB] text-white px-8 py-3.5 rounded-full font-bold hover:opacity-90 shadow-lg">
                 Get Directions
               </a>
             </div>
