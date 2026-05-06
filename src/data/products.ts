@@ -1,6 +1,6 @@
 import iphonesImage from '../assets/Iphones.png';
 import macBooks from '../assets/macbooks.png';
-import samsung from '../assets/samsung.png';
+import samsung from '../assets/Samsung.png';
 import starlink from '../assets/starlink.png';
 import airpods from '../assets/Airpod.png';
 import android3 from '../assets/android3.png';
