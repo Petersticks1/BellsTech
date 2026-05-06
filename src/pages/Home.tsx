@@ -14,7 +14,7 @@ import ctaBg from '../assets/IMG_2126.PNG';
 
 
 const heroSlides = [
-  { image: hero1, headline: 'Enhancing Your', accent: 'Digital', tail: 'Experience', sub: 'Premium gadget sales, expert repairs & tech solutions in Abeokuta.' },
+  { image: hero1, headline: 'Enhancing Your', accent: 'Digital', tail: 'Experience', sub: 'Premium gadget sales, expert repairs & tech solutions.' },
   { image: hero2, headline: 'Repairs You Can', accent: 'Trust,', tail: 'Results You\'ll Love', sub: 'Fast, genuine, and affordable phone & laptop repair services.' },
 ];
 
@@ -195,7 +195,7 @@ const Home = () => {
               { icon: <FiClock size={28} />, title: 'Fast Repairs', desc: 'Quick turnaround times to get you back online fast.' },
               { icon: <FiShield size={28} />, title: 'Genuine Products', desc: '100% authentic gadgets and replacement parts.' },
               { icon: <FiUsers size={28} />, title: 'Expert Team', desc: 'Highly skilled technicians you can trust.' },
-              { icon: <FiAward size={28} />, title: 'Trusted Service', desc: 'Top-rated customer satisfaction in Abeokuta.' },
+              { icon: <FiAward size={28} />, title: 'Trusted Service', desc: 'Top-rated customer satisfaction nationwide.' },
             ].map((f, i) => (
               <motion.div
                 key={i}

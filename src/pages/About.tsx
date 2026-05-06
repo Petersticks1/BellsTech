@@ -22,7 +22,7 @@ const About = () => {
           </motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
             className="text-white/75 text-lg max-w-xl">
-            Abeokuta's most trusted gadget and tech solution centre.
+            Your most trusted gadget and tech solution centre.
           </motion.p>
         </div>
       </div>
@@ -34,7 +34,7 @@ const About = () => {
             <span className="inline-block text-[#38BDF8] font-semibold text-sm tracking-widest uppercase mb-3">Our Story</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-6">Enhancing Your Digital Experience</h2>
             <div className="space-y-4 text-[#94A3B8] text-lg leading-relaxed">
-              <p>Bellstech (Bells Technology Multiconcept) is Abeokuta's premier destination for gadget sales, professional repairs, and innovative tech solutions.</p>
+              <p>Bellstech (Bells Technology Multiconcept) is your premier destination for gadget sales, professional repairs, and innovative tech solutions.</p>
               <p>Whether you need the latest smartphone, urgent screen replacement, or Starlink internet setup, our expert team delivers swift, reliable, and premium service.</p>
               <p>With a commitment to quality and customer satisfaction, every device we handle meets the highest performance standards.</p>
             </div>
