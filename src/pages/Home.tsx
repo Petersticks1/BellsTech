@@ -129,10 +129,10 @@ const Home = () => {
 
         {/* Hero content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 text-center">
-            <motion.div className="max-w-5xl mx-auto">
+            <motion.div className="max-w-5xl mx-auto w-full">
               <motion.h1
                 {...textAnim(0)}
-                className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white leading-tight mb-4"
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold text-white leading-tight mb-4"
               >
                 {heroSlides[1].headline}{' '}
                 <span className="relative inline-block">
