@@ -12,52 +12,30 @@ const Contact = () => {
   const [sendResult, setSendResult] = useState<'idle' | 'success' | 'error'>('idle');
   const [serverMessage, setServerMessage] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
-    setSendResult('idle');
-    setServerMessage('');
-
-    try {
-      const response = await fetch('/send_mail.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: `Enquiry from ${formData.name}`,
-          message: formData.message,
-        }),
-      });
-
-      let result: { status: string; message: string };
-      try {
-        result = await response.json();
-      } catch {
-        throw new Error('Unexpected server response. Please try again.');
-      }
-
-      if (response.ok && result.status === 'success') {
-        setSendResult('success');
-        setServerMessage(result.message);
-        setSubmitted(true);
-        setTimeout(() => {
-          setSubmitted(false);
-          setSendResult('idle');
-          setServerMessage('');
-          setFormData({ name: '', email: '', message: '' });
-        }, 5000);
-      } else {
-        setSendResult('error');
-        setServerMessage(result.message || 'Something went wrong. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setSendResult('error');
-      setServerMessage(error instanceof Error ? error.message : 'Could not reach the server. Please check your connection.');
-    } finally {
+    
+    const subject = encodeURIComponent(`Enquiry from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    const mailtoUrl = `mailto:bellstechmulticoncept@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open the user's email client
+    window.location.href = mailtoUrl;
+    
+    // Simulate a successful state for UI feedback
+    setTimeout(() => {
       setIsSending(false);
-    }
+      setSendResult('success');
+      setServerMessage('Opening your email client...');
+      setSubmitted(true);
+      
+      setTimeout(() => {
+        setSubmitted(false);
+        setSendResult('idle');
+        setFormData({ name: '', email: '', message: '' });
+      }, 3000);
+    }, 500);
   };
 
 

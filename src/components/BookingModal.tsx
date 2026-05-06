@@ -14,49 +14,29 @@ const BookingModal = ({ isOpen, onClose, initialType = 'repair' }: BookingModalP
   const [isSending, setIsSending] = useState(false);
   const [sendResult, setSendResult] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleEmailBooking = async () => {
+  const handleEmailBooking = () => {
     if (!bookingData.name || !bookingData.fault) {
       alert("Please fill in your name and description.");
       return;
     }
     
     setIsSending(true);
-    setSendResult('idle');
-    try {
-      const response = await fetch('/send_mail.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: bookingData.name,
-          email: bookingData.email,
-          subject: `${bookingType === 'repair' ? 'Repair' : 'Consultation'} Booking - ${bookingData.name}`,
-          message: `${bookingType === 'repair' ? 'Fault' : 'Consultation Request'}:\n${bookingData.fault}`
-        }),
-      });
-      
-      let result;
-      try {
-        result = await response.json();
-      } catch (e) {
-        throw new Error("Invalid server response. PHP might not be executing.");
-      }
+    
+    const subject = encodeURIComponent(`${bookingType === 'repair' ? 'Repair' : 'Consultation'} Booking - ${bookingData.name}`);
+    const body = encodeURIComponent(`Name: ${bookingData.name}\nEmail: ${bookingData.email || 'Not provided'}\n\n${bookingType === 'repair' ? 'Fault' : 'Consultation'}:\n${bookingData.fault}`);
+    const mailtoUrl = `mailto:bellstechmulticoncept@gmail.com?subject=${subject}&body=${body}`;
+    
+    window.location.href = mailtoUrl;
 
-      if (response.ok && result.status === 'success') {
-        setSendResult('success');
-        setTimeout(() => {
-          onClose();
-          setSendResult('idle');
-          setBookingData({ name: '', email: '', fault: '' });
-        }, 2000);
-      } else {
-        setSendResult('error');
-      }
-    } catch (err) {
-      console.error(err);
-      setSendResult('error');
-    } finally {
+    setTimeout(() => {
       setIsSending(false);
-    }
+      setSendResult('success');
+      setTimeout(() => {
+        onClose();
+        setSendResult('idle');
+        setBookingData({ name: '', email: '', fault: '' });
+      }, 2000);
+    }, 500);
   };
 
 
