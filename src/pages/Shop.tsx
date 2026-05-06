@@ -90,7 +90,7 @@ const Shop = () => {
                 <a
                   href={`https://wa.me/2348153838529?text=Hi%20Bellstech%2C%20I%20would%20like%20to%20enquire%20about%20${encodeURIComponent(p.name)}`}
                   target="_blank" rel="noopener noreferrer"
-                  className="block w-full text-center bg-white/5 hover:bg-[#1D6FEB] hover:text-white text-white font-bold py-2.5 rounded-xl transition-all duration-300 text-sm border border-white/10"
+                  className="block w-full text-center bg-[#1D6FEB] sm:bg-white/5 hover:bg-[#1D6FEB] hover:text-white text-white font-bold py-2.5 rounded-xl transition-all duration-300 text-sm border border-transparent sm:border-white/10 shadow-lg shadow-[#1D6FEB]/20 sm:shadow-none"
                 >
                   WhatsApp Enquiry
                 </a>
