@@ -9,7 +9,7 @@ const About = () => {
 
       {/* Page Hero */}
       <div className="relative h-72 md:h-96 overflow-hidden">
-        <img src={pageHero} alt="About Bellstech" className="w-full h-full object-cover" />
+        <img src={pageHero} alt="About Bellstech" className="w-full h-full object-contain md:object-cover" />
         <div className="absolute inset-0 bg-[#0A1F44]/75" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pt-16">
           <motion.span initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}

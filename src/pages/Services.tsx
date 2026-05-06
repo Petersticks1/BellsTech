@@ -21,7 +21,7 @@ const Services = () => {
 
       {/* Page Hero */}
       <div className="relative h-72 md:h-96 overflow-hidden">
-        <img src={pageHero} alt="Services" className="w-full h-full object-cover" />
+        <img src={pageHero} alt="Services" className="w-full h-full object-contain md:object-cover" />
         <div className="absolute inset-0 bg-[#0A1F44]/75" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pt-16">
           <motion.span
