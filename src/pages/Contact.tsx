@@ -10,11 +10,13 @@ const Contact = () => {
 
   const [isSending, setIsSending] = useState(false);
   const [sendResult, setSendResult] = useState<'idle' | 'success' | 'error'>('idle');
+  const [serverMessage, setServerMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
     setSendResult('idle');
+    setServerMessage('');
 
     try {
       const response = await fetch('/send_mail.php', {
@@ -28,28 +30,31 @@ const Contact = () => {
         }),
       });
 
-      let result;
+      let result: { status: string; message: string };
       try {
         result = await response.json();
-      } catch (e) {
-        throw new Error("Invalid server response. PHP might not be executing.");
+      } catch {
+        throw new Error('Unexpected server response. Please try again.');
       }
 
       if (response.ok && result.status === 'success') {
         setSendResult('success');
+        setServerMessage(result.message);
         setSubmitted(true);
         setTimeout(() => {
           setSubmitted(false);
           setSendResult('idle');
+          setServerMessage('');
           setFormData({ name: '', email: '', message: '' });
-        }, 3000);
+        }, 5000);
       } else {
         setSendResult('error');
+        setServerMessage(result.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
-
       console.error('Error:', error);
       setSendResult('error');
+      setServerMessage(error instanceof Error ? error.message : 'Could not reach the server. Please check your connection.');
     } finally {
       setIsSending(false);
     }
@@ -173,52 +178,77 @@ const Contact = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h4 className="text-xl font-bold">Message Sent Successfully!</h4>
-                  <p className="text-[#94A3B8]">We will get back to you shortly.</p>
+                  <h4 className="text-xl font-bold">Message Sent!</h4>
+                  <p className="text-[#94A3B8]">{serverMessage || "We'll get back to you shortly."}</p>
                 </div>
 
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+
+                  {sendResult === 'error' && serverMessage && (
+                    <div role="alert" className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl px-4 py-3 text-sm">
+                      <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                      </svg>
+                      <span>{serverMessage}</span>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="contact-name" className="block text-sm font-bold text-white mb-2">Your Name</label>
+                      <label htmlFor="contact-name" className="block text-sm font-bold text-white mb-2">Your Name <span className="text-red-400">*</span></label>
                       <input
-                        type="text" id="contact-name" required
+                        type="text" id="contact-name" required maxLength={100}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-[#38BDF8] transition-all"
+                        className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#38BDF8] transition-all"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label htmlFor="contact-email" className="block text-sm font-bold text-white mb-2">Email Address</label>
+                      <label htmlFor="contact-email" className="block text-sm font-bold text-white mb-2">Email Address <span className="text-red-400">*</span></label>
                       <input
-                        type="email" id="contact-email" required
+                        type="email" id="contact-email" required maxLength={254}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-[#38BDF8] transition-all"
+                        className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#38BDF8] transition-all"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
+
                   <div>
-                    <label htmlFor="contact-message" className="block text-sm font-bold text-white mb-2">Message</label>
+                    <div className="flex justify-between items-baseline mb-2">
+                      <label htmlFor="contact-message" className="text-sm font-bold text-white">Message <span className="text-red-400">*</span></label>
+                      <span className={`text-xs tabular-nums ${formData.message.length > 4800 ? 'text-red-400' : 'text-white/40'}`}>
+                        {formData.message.length}/5000
+                      </span>
+                    </div>
                     <textarea
-                      id="contact-message" rows={7} required
+                      id="contact-message" rows={7} required maxLength={5000}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-[#38BDF8] transition-all resize-none"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#38BDF8] transition-all resize-none"
                       placeholder="How can we help you today?"
                     />
                   </div>
+
                   <motion.button
                     type="submit"
                     disabled={isSending}
                     whileHover={{ scale: 1.02, boxShadow: '0 8px 30px rgba(29,111,235,0.35)' }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-[#1D6FEB] text-white font-bold py-4 rounded-xl shadow-lg transition-shadow text-lg disabled:opacity-50"
+                    className="w-full bg-[#1D6FEB] text-white font-bold py-4 rounded-xl shadow-lg transition-shadow text-lg disabled:opacity-60 flex items-center justify-center gap-2"
                   >
-                    {isSending ? 'Sending...' : sendResult === 'error' ? 'Failed - Try Again' : 'Send Message'}
+                    {isSending ? (
+                      <>
+                        <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                        Sending…
+                      </>
+                    ) : sendResult === 'error' ? 'Try Again' : 'Send Message'}
                   </motion.button>
 
                 </form>
