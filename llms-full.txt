@@ -1,0 +1,72 @@
+# Bellstech - Full Documentation for LLMs
+
+## Overview
+**Website**: https://bellsmulticoncept.com
+
+Bellstech is a modern, high-end technology service platform designed to provide a seamless digital experience. The platform serves as both a service showcase and an e-commerce hub for high-quality gadgets and professional tech services.
+
+## Brand Identity
+- **Name**: Bellstech
+- **Slogan**: Enhancing Your Digital Experience
+- **Aesthetic**: Premium, dark-themed, minimalist, and interactive.
+- **Colors**: Primary Blue (#1D6FEB), Accent Blue (#38BDF8), Deep Navy Background (#0A1F44).
+
+## Detailed Services
+### 1. Gadget Sales
+- Premium smartphones (iPhone, Samsung, etc.).
+- High-performance laptops (MacBook, HP, Dell).
+- Essential tech accessories.
+
+### 2. Expert Repairs
+- **Phone Repairs**: Screen replacements, battery changes, software troubleshooting.
+- **Laptop Repairs**: MacBook and Windows PC diagnostics and hardware repairs.
+
+### 3. Starlink Solutions
+- Authorized sales of Starlink hardware.
+- Professional installation and signal optimization for satellite internet.
+
+### 4. Networking & Connectivity
+- Home networking (Wi-Fi expansion, mesh systems).
+- Office networking solutions for business productivity.
+
+### 5. Workspace Optimization
+- Ergonomic workspace design.
+- Tech integration for home and professional offices.
+
+## Technical Architecture
+### Frontend Framework
+- **React 19**: Utilizing the latest React features and concurrent rendering.
+- **TypeScript**: Ensuring type safety across the codebase.
+- **Vite**: Fast build tool and dev server.
+
+### Styling & UI
+- **Tailwind CSS 4.0**: Utility-first CSS for responsive design.
+- **Framer Motion**: Smooth animations, page transitions, and interactive elements.
+- **Lenis**: High-performance smooth scrolling for a premium feel.
+
+### Routing
+- **React Router Dom**: Client-side routing.
+- **HashRouter**: Used to ensure compatibility with static hosting environments.
+
+### Project Structure
+- `index.html`: Main entry point with SEO meta tags.
+- `src/main.tsx`: Application bootstrap.
+- `src/App.tsx`: Root component with routing and preloader logic.
+- `src/components/`:
+  - `Layout.tsx`: Common page structure (Navbar, Footer).
+  - `SmoothScroll.tsx`: Lenis integration.
+  - `BookingModal.tsx`: Global service booking interface.
+- `src/pages/`:
+  - `Home.tsx`: Hero section and service highlights.
+  - `Services.tsx`: Comprehensive list of tech services.
+  - `Shop.tsx`: Product catalog.
+  - `About.tsx`: Company mission and values.
+  - `Contact.tsx`: Support and location information.
+- `src/data/`:
+  - `services.ts`: Structured service information.
+  - `products.ts`: (If applicable) Product listings.
+
+## Deployment & SEO
+- **Sitemap**: Located at `public/sitemap.xml`.
+- **Meta Tags**: Optimized for tech service keywords and brand visibility.
+- **LLM Context**: `llms.txt` and `llms-full.txt` provide context for AI assistants.

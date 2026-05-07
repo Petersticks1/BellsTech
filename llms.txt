@@ -1,0 +1,24 @@
+# Bellstech
+**Domain**: https://bellsmulticoncept.com
+
+Bellstech is a premium technology service provider specializing in gadget sales, expert repairs, and high-speed internet solutions.
+
+## Core Services
+- **Gadget Sales**: Premium smartphones, laptops, and accessories (Apple, Samsung, HP, etc.).
+- **Expert Repairs**: Fast and reliable repair services for phones and laptops (MacBooks & Windows).
+- **Starlink Solutions**: Sales and professional installation for high-speed satellite internet.
+- **Networking**: Home and office networking setups for seamless connectivity.
+- **Workspace Setup**: Ergonomic and tech-focused productivity setups.
+
+## Technology Stack
+- **Frontend**: React 19, TypeScript, Vite.
+- **Styling**: Tailwind CSS.
+- **Animations**: Framer Motion.
+- **Routing**: React Router (HashRouter).
+- **Scrolling**: Lenis (Smooth Scroll).
+
+## Repository Structure
+- `/src/components`: Reusable UI components.
+- `/src/pages`: Main application pages (Home, Services, Shop, About, Contact).
+- `/src/data`: Static data for services and products.
+- `/public`: Static assets and SEO files.
