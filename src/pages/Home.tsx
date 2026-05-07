@@ -98,7 +98,7 @@ const Home = () => {
             >
               <img
                 src={heroSlides[current].image}
-                className={`w-full h-full object-cover transform-gpu transition-all duration-700 ${current === 1 ? 'blur-[1px] brightness-[0.8]' : ''}`}
+                className={`w-full h-full object-cover object-center transform-gpu transition-all duration-700 ${current === 1 ? 'blur-[1px] brightness-[0.8]' : ''}`}
                 alt="Bellstech hero"
                 loading="eager"
                 fetchPriority="high"
@@ -129,28 +129,30 @@ const Home = () => {
 
         {/* Hero content */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 text-center">
-            <motion.div className="max-w-5xl mx-auto w-full">
+            <motion.div className="max-w-6xl mx-auto w-full">
               <motion.h1
+                key={`headline-${current}`}
                 {...textAnim(0)}
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold text-white leading-tight mb-4"
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-8xl font-heading font-bold text-white leading-tight mb-6"
               >
-                {heroSlides[1].headline}{' '}
+                {heroSlides[current].headline}{' '}
                 <span className="relative inline-block">
                   <span className="text-[#38BDF8]">
-                    {heroSlides[1].accent}
+                    {heroSlides[current].accent}
                   </span>
                   <span className="absolute -bottom-1 left-0 w-full h-1 rounded-full bg-[#1D6FEB] blur-sm" />
                 </span>
-                {heroSlides[1].tail && (
-                  <><br /><span className="text-white">{heroSlides[1].tail}</span></>
+                {heroSlides[current].tail && (
+                  <><br /><span className="text-white">{heroSlides[current].tail}</span></>
                 )}
               </motion.h1>
 
               <motion.p
+                key={`sub-${current}`}
                 {...textAnim(1)}
                 className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto font-body"
               >
-                {heroSlides[1].sub}
+                {heroSlides[current].sub}
               </motion.p>
 
               <motion.div

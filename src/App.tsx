@@ -135,6 +135,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: loading ? 0 : 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full"
           >
             <Suspense fallback={<PageLoader />}>
               <Routes>
