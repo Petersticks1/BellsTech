@@ -43,8 +43,8 @@ const Navbar = () => {
       transition={{ duration: 0.7, ease: 'easeOut' }}
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/85 backdrop-blur-xl shadow-[0_4px_32px_rgba(10,31,68,0.12)] py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-[#0A1F44]/40 backdrop-blur-xl border-b border-white/5 py-2 md:py-3'
+          : 'bg-transparent py-4 md:py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,9 +60,7 @@ const Navbar = () => {
                 whileHover={{ rotate: [0, -5, 5, 0], transition: { duration: 0.4 } }}
               />
               <motion.span
-                className={`font-heading font-bold text-lg lg:text-xl tracking-wide transition-colors duration-300 hidden sm:block truncate ${
-                  isScrolled ? 'text-[#0A1F44]' : 'text-white'
-                }`}
+                className={`font-heading font-bold text-lg lg:text-xl tracking-wide transition-colors duration-300 hidden sm:block truncate text-white`}
               >
                 Bells<span className="text-[#38BDF8]">tech</span>
               </motion.span>
@@ -84,8 +82,8 @@ const Navbar = () => {
                     to={link.path}
                     className={`relative px-2 lg:px-4 py-2 font-medium text-[13px] lg:text-sm rounded-lg transition-colors duration-200 group whitespace-nowrap ${
                       isActive
-                        ? isScrolled ? 'text-[#1D6FEB]' : 'text-[#38BDF8]'
-                        : isScrolled ? 'text-[#0D1B2A] hover:text-[#1D6FEB]' : 'text-white/90 hover:text-white'
+                        ? 'text-[#38BDF8]'
+                        : 'text-white/90 hover:text-white'
                     }`}
                   >
                     {link.name}
@@ -118,9 +116,7 @@ const Navbar = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`md:hidden p-2 ml-2 rounded-lg transition-colors ${
-                isScrolled ? 'text-[#0A1F44]' : 'text-white'
-              }`}
+              className={`md:hidden p-2 ml-2 rounded-lg transition-colors text-white`}
               aria-label="Toggle menu"
             >
               <AnimatePresence mode="wait" initial={false}>
